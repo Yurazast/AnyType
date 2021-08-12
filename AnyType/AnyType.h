@@ -62,6 +62,8 @@ private:
 		NONE
 	};
 
+	void CheckTypeIs(Type&& type) const;
+
 	std::unique_ptr<Value> m_value;
 	Type m_type;
 

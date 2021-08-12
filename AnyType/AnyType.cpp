@@ -179,48 +179,42 @@ const char* AnyType::TypeName() const noexcept
 
 bool AnyType::ToBool() const
 {
-	if (this->m_type != Type::BOOL)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(Type::BOOL)]);
-
+	CheckTypeIs(Type::BOOL);
 	return this->m_value->bool_;
 }
 
 char AnyType::ToChar() const
 {
-	if (this->m_type != Type::CHAR)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(Type::CHAR)]);
-
+	CheckTypeIs(Type::CHAR);
 	return this->m_value->char_;
 }
 
 int AnyType::ToInt() const
 {
-	if (this->m_type != Type::INT)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(Type::INT)]);
-
+	CheckTypeIs(Type::INT);
 	return this->m_value->int_;
 }
 
 unsigned int AnyType::ToUnsignedInt() const
 {
-	if (this->m_type != Type::UNSIGNED_INT)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(Type::UNSIGNED_INT)]);
-
+	CheckTypeIs(Type::UNSIGNED_INT);
 	return this->m_value->unsigned_int_;
 }
 
 float AnyType::ToFloat() const
 {
-	if (this->m_type != Type::FLOAT)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(Type::FLOAT)]);
-
+	CheckTypeIs(Type::FLOAT);
 	return this->m_value->float_;
 }
 
 double AnyType::ToDouble() const
 {
-	if (this->m_type != Type::DOUBLE)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(Type::DOUBLE)]);
-
+	CheckTypeIs(Type::DOUBLE);
 	return this->m_value->double_;
+}
+
+void AnyType::CheckTypeIs(Type&& type) const
+{
+	if (this->m_type != type)
+		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(type)]);
 }
