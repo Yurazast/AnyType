@@ -10,14 +10,14 @@ int main()
 	first_anyType = 0.931f;
 
 	std::cout << "Before swap:" << std::endl;
-	std::cout << "first_anyType = " << first_anyType.ToFloat() << ", " << first_anyType.TypeName() << std::endl;
-	std::cout << "second_anyType = " << second_anyType.ToChar() << ", " << second_anyType.TypeName() << std::endl;
+	std::cout << "first_anyType = " << first_anyType.ToFloat() << ", " << first_anyType.get_type_name() << std::endl;
+	std::cout << "second_anyType = " << second_anyType.ToChar() << ", " << second_anyType.get_type_name() << std::endl;
 
 	first_anyType.Swap(second_anyType);
 	
 	std::cout << "\nAfter swap:" << std::endl;
-	std::cout << "first_anyType = " << first_anyType.ToChar() << ", " << first_anyType.TypeName() << std::endl;
-	std::cout << "second_anyType = " << second_anyType.ToFloat() << ", " << second_anyType.TypeName() << std::endl;
+	std::cout << "first_anyType = " << first_anyType.ToChar() << ", " << first_anyType.get_type_name() << std::endl;
+	std::cout << "second_anyType = " << second_anyType.ToFloat() << ", " << second_anyType.get_type_name() << std::endl;
 
 	AnyType anyType(5u);
 

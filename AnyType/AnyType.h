@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <map>
 #include "ExceptionType.h"
 
 class AnyType
@@ -25,7 +26,7 @@ public:
 	AnyType& operator=(AnyType&& obj) noexcept;
 	void Destroy();
 	void Swap(AnyType& obj);
-	const char* TypeName() const noexcept;
+	const char* get_type_name() const noexcept;
 	bool ToBool() const;
 	char ToChar() const;
 	int ToInt() const;
@@ -67,5 +68,5 @@ private:
 	std::unique_ptr<Value> m_value;
 	Type m_type;
 
-	static const char* const TYPE_NAMES[];
+	static const std::map<const Type, const char* const> TYPE_NAMES;
 };

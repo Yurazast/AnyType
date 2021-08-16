@@ -1,59 +1,40 @@
 #include "AnyType.h"
 
-const char* const AnyType::TYPE_NAMES[]
-{
-	"bool",
-	"char",
-	"int",
-	"unsigned int",
-	"float",
-	"double",
-	"undefined type"
+const std::map<const AnyType::Type, const char* const> AnyType::TYPE_NAMES {
+	{Type::BOOL, "bool"},
+	{Type::CHAR, "char"},
+	{Type::INT, "int"},
+	{Type::UNSIGNED_INT, "unsigned int"},
+	{Type::FLOAT, "float"},
+	{Type::DOUBLE, "double"},
+	{Type::NONE, "undefined type"}
 };
 
 AnyType::AnyType() : m_value(nullptr), m_type(Type::NONE) {}
 
 AnyType::AnyType(const bool& value)
 		: m_value(std::make_unique<Value>(Value{value}))
-		, m_type(Type::BOOL)
-{
-
-}
+		, m_type(Type::BOOL) {}
 
 AnyType::AnyType(const char& value)
 		: m_value(std::make_unique<Value>(Value{value}))
-		, m_type(Type::CHAR)
-{
-
-}
+		, m_type(Type::CHAR) {}
 
 AnyType::AnyType(const int& value)
 		: m_value(std::make_unique<Value>(Value{value}))
-		, m_type(Type::INT)
-{
-
-}
+		, m_type(Type::INT) {}
 
 AnyType::AnyType(const unsigned int& value)
 		: m_value(std::make_unique<Value>(Value{value}))
-		, m_type(Type::UNSIGNED_INT)
-{
-
-}
+		, m_type(Type::UNSIGNED_INT) {}
 
 AnyType::AnyType(const float& value)
 		: m_value(std::make_unique<Value>(Value{value}))
-		, m_type(Type::FLOAT)
-{
-
-}
+		, m_type(Type::FLOAT) {}
 
 AnyType::AnyType(const double& value)
 		: m_value(std::make_unique<Value>(Value{value}))
-		, m_type(Type::DOUBLE)
-{
-
-}
+		, m_type(Type::DOUBLE) {}
 
 AnyType::AnyType(const AnyType &obj)
 {
@@ -172,9 +153,9 @@ void AnyType::Swap(AnyType &obj)
 	std::swap(this->m_type, obj.m_type);
 }
 
-const char* AnyType::TypeName() const noexcept
+const char* AnyType::get_type_name() const noexcept
 {
-	return TYPE_NAMES[static_cast<std::size_t>(this->m_type)];
+	return TYPE_NAMES.at(this->m_type);
 }
 
 bool AnyType::ToBool() const
@@ -216,5 +197,5 @@ double AnyType::ToDouble() const
 void AnyType::CheckTypeIs(Type&& type) const
 {
 	if (this->m_type != type)
-		throw ExceptionType(TYPE_NAMES[static_cast<std::size_t>(type)]);
+		throw ExceptionType(TYPE_NAMES.at(type));
 }
